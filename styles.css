@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(20, 20, 20);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#333 1px, transparent 1px),
+    linear-gradient(90deg, #333 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.intro {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: fadeIn 2s ease forwards;
+  background-color: rgb(20, 20, 20);
+  z-index: 10;
+  position: relative;
+}
+
+.main {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.main.fade-in {
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+.center-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.logo-img {
+  width: 100px;
+  transition: transform 0.4s ease;
+}
+
+.logo-text {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #f57f41;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.logo-wrapper:hover .logo-img {
+  transform: translateX(-40px);
+}
+
+.logo-wrapper:hover .logo-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 1px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  border-color: #f57f41;
+  box-shadow: 0 0 8px #f57f41;
+}
+
+.info-section {
+  padding: 4rem 2rem;
+  background-color: rgb(20, 20, 20);
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.info-section h2 {
+  font-size: 2rem;
+  color: #f57f41;
+  margin-bottom: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

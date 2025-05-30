@@ -9,36 +9,44 @@
 <body>
   <!-- Browser verification overlay -->
   <div id="browserVerify" class="browser-verify-overlay">
-    <div class="browser-verify-content">
+    <div class="browser-verify-content" id="browserVerifyStep">
       <h1 class="bv-title">Orbital.exe</h1>
-      <h2 class="bv-subtitle">
-        We are confirming you are human. This may take a few seconds.
+      <h2 class="bv-subtitle" id="bvSubtitle">
+        Verifying your browser. This may take a few seconds.
       </h2>
-      <div class="bv-check">
+      <div class="bv-check" id="bvCheckBox">
         <div class="bv-spinner"></div>
-        <span class="bv-verifying">Verifying browser...</span>
+        <span class="bv-verifying" id="bvVerifyingText">Checking browser...</span>
         <div class="bv-powered">
           <span style="font-size:1.2em;vertical-align:middle;letter-spacing:1px;font-weight:600;color:#ffa500">
             <svg style="width:1.4em;height:1.4em;vertical-align:middle;margin-right:0.3em" viewBox="0 0 32 24"><ellipse cx="16" cy="12" rx="16" ry="12" fill="#ffa500"><animate attributeName="opacity" values="1;.45;1" dur="2.1s" repeatCount="indefinite"/></ellipse></svg>
             ORBITAL SHIELD
           </span>
-          <div class="bv-privacy">Privacy  |  Terms</div>
+          <div class="bv-privacy">Privacy &nbsp;|&nbsp; Terms</div>
         </div>
       </div>
-      <div class="bv-desc">
-        Orbital.exe needs to check the security of your connection before you can continue.
+      <div class="bv-desc" id="bvDesc">
+        Orbital.exe must check your connection security before you can proceed.
       </div>
+    </div>
+    <!-- CAPTCHA challenge (hidden by default) -->
+    <div class="browser-captcha-content" id="browserCaptcha" style="display:none;">
+      <h2 class="bv-subtitle">Prove you're human</h2>
+      <div class="captcha-box">
+        <span class="captcha-label" id="captchaQuestion"></span>
+        <input type="text" id="captchaInput" class="captcha-input" placeholder="Your answer..."/>
+        <button id="captchaSubmit" class="btn glow-btn" style="margin-left:1em;">Submit</button>
+      </div>
+      <div id="captchaError" style="color:#ff9100;font-weight:600;margin-top:1em;min-height:1.5em;"></div>
     </div>
   </div>
 
   <!-- Main website content (hidden until verification passes) -->
   <div id="appContent" style="display:none">
     <div class="background-boxes"></div>
-
     <div class="intro" id="intro">
       <h1 id="introText1" class="intro-text">THE FUTURE OF EXECUTORS</h1>
     </div>
-
     <main class="main hidden" id="main">
       <section class="center-container hero-section">
         <div class="orbital-text" id="orbitalText">ORBITAL</div>
@@ -59,8 +67,6 @@
         </div>
       </footer>
     </main>
-
-    <!-- TOS Modal -->
     <div id="tosModal" class="tos-modal hidden">
       <div class="tos-content">
         <div class="tos-header">

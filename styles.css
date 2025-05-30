@@ -54,6 +54,9 @@ body::before {
   transform: scale(1);
   animation: introTextFadeIn 1.2s forwards;
 }
+.intro-text.outro {
+  animation: introTextFadeOut 0.85s forwards;
+}
 .intro-text.hide {
   opacity: 0;
   transform: scale(0.98) translateY(15px);
@@ -69,6 +72,10 @@ body::before {
 @keyframes introTextFadeIn {
   from { opacity: 0; transform: scale(.96);}
   to { opacity: 1; transform: scale(1);}
+}
+@keyframes introTextFadeOut {
+  from { opacity: 1; transform: scale(1);}
+  to { opacity: 0; transform: scale(1.02) translateY(-30px);}
 }
 
 .main {
@@ -177,9 +184,9 @@ body::before {
 }
 
 .orbital-img {
-  width: 320px;
-  max-width: 85vw;
-  max-height: 220px;
+  width: 370px;
+  max-width: 95vw;
+  max-height: 270px;
   border-radius: 18px;
   box-shadow: 0 8px 44px #101010cc, 0 2px 12px #0a0a0a;
   transition: 
@@ -192,11 +199,11 @@ body::before {
 
 @media (max-width: 600px) {
   .orbital-img {
-    width: 96vw;
-    max-width: 96vw;
+    width: 98vw;
+    max-width: 98vw;
     min-width: 0;
     height: auto;
-    max-height: 30vh;
+    max-height: 34vh;
   }
 }
 

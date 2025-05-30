@@ -54,6 +54,10 @@ body::before {
   color: #e9ecf6;
   text-shadow: 0 2px 28px #0a1d2f;
 }
+.intro-text.fadein {
+  opacity: 0;
+  animation: introFadeIn 1.2s 0.1s forwards;
+}
 .intro-text.show {
   opacity: 1;
   transform: scale(1);
@@ -64,12 +68,16 @@ body::before {
   transform: scale(0.98) translateY(15px);
   z-index: 1;
 }
-
 #introText2 {
   color: #3498ff;
   font-size: 2.8rem;
   letter-spacing: 8px;
   font-weight: 900;
+}
+
+@keyframes introFadeIn {
+  from { opacity: 0; transform: scale(.97);}
+  to { opacity: 1; transform: scale(1);}
 }
 
 .main {
@@ -193,18 +201,26 @@ body::before {
   border-radius: 18px;
   box-shadow: 0 8px 44px #11204688;
   padding: 2.4rem 2rem 2.8rem 2rem;
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 1s cubic-bezier(0.39, 0.575, 0.565, 1), transform 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.39, 0.575, 0.565, 1), transform 0.7s cubic-bezier(0.39, 0.575, 0.565, 1);
   border: 1.5px solid #263c5c;
   position: relative;
   z-index: 1;
   min-height: 300px;
 }
 
+.panel.hide-on-load {
+  opacity: 0;
+  transform: translateY(60px) scale(0.97);
+  pointer-events: none;
+}
+
 .panel.reveal {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: all;
+  transition: opacity 0.7s cubic-bezier(0.39, 0.575, 0.565, 1), transform 0.7s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 .panel-header {
@@ -294,17 +310,24 @@ body::before {
   max-width: 1100px;
   margin: 2.5rem auto 0 auto;
   padding: 2.4rem 2rem 2.8rem 2rem;
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 1s cubic-bezier(0.39, 0.575, 0.565, 1), transform 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.39, 0.575, 0.565, 1), transform 0.7s cubic-bezier(0.39, 0.575, 0.565, 1);
   border: 1.5px solid #263c5c;
   position: relative;
   z-index: 1;
 }
 
+.community-panel.hide-on-load {
+  opacity: 0;
+  transform: translateY(60px) scale(0.97);
+  pointer-events: none;
+}
+
 .community-panel.reveal {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: all;
 }
 
 .community-content {

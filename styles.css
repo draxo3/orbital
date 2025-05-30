@@ -36,11 +36,10 @@ body::before {
   z-index: 100;
   transition: opacity 1s;
 }
-
 .intro-text {
   position: absolute;
   opacity: 0;
-  font-size: 2.6rem;
+  font-size: 2.7rem;
   font-weight: 900;
   letter-spacing: 2.5px;
   color: #fff;
@@ -61,14 +60,6 @@ body::before {
   opacity: 0;
   transform: scale(0.98) translateY(15px);
 }
-#introText2 {
-  font-size: 2.9rem;
-  color: #fff;
-  letter-spacing: 14px;
-  font-weight: 900;
-  animation: none;
-}
-
 @keyframes introTextFadeIn {
   from { opacity: 0; transform: scale(.96);}
   to { opacity: 1; transform: scale(1);}
@@ -86,15 +77,12 @@ body::before {
   background: #181818;
   min-height: 100vh;
 }
-
 .main.fade-in {
   opacity: 1;
 }
-
 .hidden {
   display: none !important;
 }
-
 .fade-out {
   animation: fadeOut 1s forwards;
 }
@@ -121,10 +109,9 @@ body::before {
   transition: transform 0.4s, text-shadow 0.4s;
   text-shadow: 0 2px 24px #222;
 }
-
 .orbital-text:hover {
   transform: translateY(-6px) scale(1.04);
-  text-shadow: 0 2px 44px #b8b8b8;
+  text-shadow: 0 2px 44px #ff9100;
 }
 
 .tagline {
@@ -143,7 +130,6 @@ body::before {
   margin-top: 1rem;
   margin-bottom: 2.5rem;
 }
-
 .btn {
   padding: 0.75rem 2rem;
   background: #232323;
@@ -161,16 +147,14 @@ body::before {
   outline: none;
   position: relative;
 }
-
 .btn.glow-btn:hover, .btn.glow-btn:focus {
-  border-color: #aaaaaa;
-  box-shadow: 0 0 0 2px #aaaaaa66, 0 0 12px 2px #aaaaaa;
+  border-color: #ff9100;
+  box-shadow: 0 0 0 2px #ff910066, 0 0 12px 2px #ff9100;
   z-index: 2;
 }
-
 .btn.glow-btn:active {
   background: #2d2d2d;
-  color: #dddddd;
+  color: #ffd699;
 }
 
 .img-3d-container {
@@ -182,7 +166,6 @@ body::before {
   align-items: center;
   min-height: 180px;
 }
-
 .orbital-img {
   width: 370px;
   max-width: 95vw;
@@ -197,28 +180,86 @@ body::before {
   user-select: none;
 }
 
-@media (max-width: 600px) {
-  .orbital-img {
-    width: 98vw;
-    max-width: 98vw;
-    min-width: 0;
-    height: auto;
-    max-height: 34vh;
-  }
+.description {
+  margin-top: 10px;
+  font-size: 1.13rem;
+  color: #efefef;
+  max-width: 450px;
+}
+.description h2 {
+  color: #ff9100;
+  font-size: 1.35rem;
+  margin-bottom: 0.45em;
+}
+.description p {
+  margin-bottom: 0.6em;
+  color: #e0e0e0;
+}
+.orange-accent {
+  color: #ff9100;
+  font-weight: 700;
+}
+.more-info {
+  font-size: 1em;
+  color: #bbbbbb;
+  margin-top: 0.3em;
+  margin-bottom: 1.7em;
 }
 
-.blue-accent {
-  color: #aaa;
+.spacer {
+  height: 18px;
+}
+
+.features {
+  margin-bottom: 2.2em;
+  margin-top: 1em;
+  color: #ff9100;
+}
+.features h3 {
+  color: #ff9100;
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+.features ul {
+  list-style: none;
+  padding: 0;
+  color: #fff;
+  font-size: 1.03em;
+}
+.features li {
+  margin-bottom: 0.4em;
+  color: #fedcb4;
+  text-align: left;
+  margin-left: 1em;
+}
+
+.join-community {
+  margin-top: 1.5em;
+  color: #fff;
+}
+.join-community h3 {
+  color: #ff9100;
+  margin-bottom: 0.4em;
+}
+.join-community p {
+  color: #dadada;
+  margin-bottom: 0.5em;
+}
+
+.blue-accent,
+.orange-accent {
+  color: #ff9100;
   font-weight: 700;
 }
 
 .blue-link {
-  color: #aaa;
+  color: #ff9100;
   text-decoration: underline;
   transition: color 0.2s;
 }
 .blue-link:hover {
-  color: #888;
+  color: #d46a00;
 }
 
 .footer {
@@ -256,13 +297,13 @@ body::before {
   box-shadow: 0 2px 12px #0008;
 }
 .footer-content a {
-  color: #aaa;
+  color: #ff9100;
   text-decoration: underline;
   margin-left: 0.5rem;
   background: transparent;
 }
 .footer-content a:hover {
-  color: #888;
+  color: #d46a00;
 }
 
 /* TOS Modal */
@@ -293,13 +334,13 @@ body::before {
   font-size: 2.1rem;
   font-weight: 900;
   margin-bottom: 1rem;
-  color: #aaa;
+  color: #ff9100;
 }
 
 .tos-divider {
   border: none;
   height: 2.5px;
-  background: linear-gradient(to right, #aaaaaa 80%, transparent);
+  background: linear-gradient(to right, #ff9100 80%, transparent);
   margin-bottom: 1.7rem;
   opacity: 0.28;
 }
@@ -317,16 +358,14 @@ body::before {
   justify-content: center;
   margin-top: 1.5rem;
 }
-
 .tos-accept {
-  border-color: #888;
-  color: #aaa;
+  border-color: #ff9100;
+  color: #ff9100;
 }
 .tos-accept:hover {
-  background: #282828;
-  box-shadow: 0 0 0 2px #88888866, 0 0 12px 2px #888;
+  background: #2d2115;
+  box-shadow: 0 0 0 2px #ff910066, 0 0 12px 2px #ff9100;
 }
-
 .tos-decline {
   border-color: #555;
   color: #888;
@@ -340,7 +379,6 @@ body::before {
   from { opacity: 0; transform: scale(0.97);}
   to { opacity: 1; transform: scale(1);}
 }
-
 @keyframes fadeOut {
   from { opacity: 1; }
   to   { opacity: 0; }

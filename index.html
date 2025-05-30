@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Browser verification overlay -->
+  <!-- Verification Overlay -->
   <div id="browserVerify" class="browser-verify-overlay">
-    <div class="browser-verify-content" id="browserVerifyStep">
+    <div id="verifyStep" class="browser-verify-content">
       <h1 class="bv-title">Orbital.exe</h1>
       <h2 class="bv-subtitle" id="bvSubtitle">
         Verifying your browser. This may take a few seconds.
@@ -29,15 +29,17 @@
         Orbital.exe must check your connection security before you can proceed.
       </div>
     </div>
-    <!-- CAPTCHA challenge (hidden by default) -->
-    <div class="browser-captcha-content" id="browserCaptcha" style="display:none;">
-      <h2 class="bv-subtitle">Prove you're human</h2>
-      <div class="captcha-box">
-        <span class="captcha-label" id="captchaQuestion"></span>
-        <input type="text" id="captchaInput" class="captcha-input" placeholder="Your answer..."/>
-        <button id="captchaSubmit" class="btn glow-btn" style="margin-left:1em;">Submit</button>
+    <!-- CAPTCHA Challenge -->
+    <div id="captchaOuter" class="captcha-outer" style="display:none;">
+      <div class="captcha-container">
+        <h2 class="captcha-title">Prove you're human</h2>
+        <form class="captcha-row" id="captchaForm" autocomplete="off" onsubmit="return false;">
+          <label class="captcha-label" id="captchaQuestion"></label>
+          <input type="text" id="captchaInput" class="captcha-input" placeholder="Your answer..." autocomplete="off" />
+          <button id="captchaSubmit" class="btn-captcha" type="submit">Submit</button>
+        </form>
+        <div id="captchaError" class="captcha-error"></div>
       </div>
-      <div id="captchaError" style="color:#ff9100;font-weight:600;margin-top:1em;min-height:1.5em;"></div>
     </div>
   </div>
 

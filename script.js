@@ -43,8 +43,8 @@ if (orbitalText) {
     const { left, width } = orbitalText.getBoundingClientRect();
     const x = (e.clientX - left) / width - 0.5;
     orbitalText.style.textShadow = `
-      ${x*24}px 2px 32px #fff8,
-      0 2px 24px #202e46
+      ${x*24}px 2px 32px #ccc8,
+      0 2px 24px #222
     `;
   });
   orbitalText.addEventListener('mouseleave', () => {
@@ -102,7 +102,7 @@ if (img3d) {
     const rotateX = ((cy - y) / cy) * 10; // max 10deg
     const rotateY = ((x - cx) / cx) * 12;
     img3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-    img3d.style.boxShadow = `0 8px 44px #111b 0 2px 12px #0a0a0a`;
+    img3d.style.boxShadow = `0 8px 44px #222b 0 2px 12px #1a1a1a`;
   });
   img3d.addEventListener('mouseleave', () => {
     img3d.style.transform = 'none';
@@ -151,16 +151,16 @@ document.addEventListener('keydown', (e) => {
 // ------ Enhance Button Glows and Focus ------
 document.querySelectorAll('.btn.glow-btn').forEach(btn => {
   btn.addEventListener('mouseenter', function() {
-    this.style.boxShadow = '0 0 0 2px #3498ff66, 0 0 16px 2px #3498ff';
-    this.style.borderColor = '#3498ff';
+    this.style.boxShadow = '0 0 0 2px #aaaaaa66, 0 0 16px 2px #aaaaaa';
+    this.style.borderColor = '#aaaaaa';
   });
   btn.addEventListener('mouseleave', function() {
     this.style.boxShadow = '';
     this.style.borderColor = '';
   });
   btn.addEventListener('focus', function() {
-    this.style.boxShadow = '0 0 0 2px #3498ff88, 0 0 12px 2px #3498ff';
-    this.style.borderColor = '#3498ff';
+    this.style.boxShadow = '0 0 0 2px #aaaaaa88, 0 0 12px 2px #aaaaaa';
+    this.style.borderColor = '#aaaaaa';
   });
   btn.addEventListener('blur', function() {
     this.style.boxShadow = '';

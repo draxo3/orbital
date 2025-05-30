@@ -4,7 +4,6 @@ const acceptedBrowsers = [
 ];
 function detectBrowser() {
   const ua = navigator.userAgent;
-  // Opera GX and Opera
   if (ua.includes("OPR") || ua.includes("Opera")) return "Opera";
   if (ua.includes("Edg")) return "Edge";
   if (ua.includes("Brave")) return "Brave";
@@ -13,7 +12,6 @@ function detectBrowser() {
     if (ua.includes("Brave")) return "Brave";
     return "Chrome";
   }
-  // fallback
   return "Unknown";
 }
 
@@ -30,14 +28,20 @@ function generateCaptcha() {
 }
 
 function showCaptcha() {
-  document.getElementById('browserVerifyStep').style.display = 'none';
-  document.getElementById('browserCaptcha').style.display = 'flex';
+  document.getElementById('verifyStep').style.display = 'none';
+  document.getElementById('captchaOuter').style.display = 'flex';
   // Set up captcha
   const captcha = generateCaptcha();
   document.getElementById('captchaQuestion').innerText = captcha.question;
   document.getElementById('captchaError').innerText = '';
   document.getElementById('captchaInput').value = '';
   document.getElementById('captchaInput').focus();
+
+  document.getElementById('captchaForm').onsubmit = function(e) {
+    e.preventDefault();
+    document.getElementById('captchaSubmit').click();
+  };
+
   document.getElementById('captchaSubmit').onclick = function() {
     const input = document.getElementById('captchaInput').value.trim();
     if (input === captcha.answer) {
@@ -46,8 +50,9 @@ function showCaptcha() {
       setTimeout(() => {
         document.getElementById('browserVerify').style.display = 'none';
         document.getElementById('appContent').style.display = '';
-        // If you want to focus main content or scroll, do it here.
-      }, 500);
+        // Show intro after verification!
+        showIntro();
+      }, 450);
     } else {
       document.getElementById('captchaError').innerText = 'Incorrect answer! Please try again.';
       document.getElementById('captchaInput').focus();
@@ -56,6 +61,35 @@ function showCaptcha() {
   document.getElementById('captchaInput').onkeydown = function(e) {
     if (e.key === "Enter") document.getElementById('captchaSubmit').click();
   };
+}
+
+// Show the animated intro after verification (again)
+function showIntro() {
+  const intro = document.getElementById('intro');
+  const main = document.getElementById('main');
+  const introText1 = document.getElementById('introText1');
+  intro.classList.remove('hidden');
+  introText1.classList.remove('hidden');
+  introText1.classList.remove('hide');
+  introText1.classList.remove('outro');
+  introText1.classList.add('show');
+  main.classList.add('hidden');
+  setTimeout(() => {
+    introText1.classList.remove('show');
+    introText1.classList.add('outro');
+    setTimeout(() => {
+      introText1.classList.remove('outro');
+      introText1.classList.add('hidden');
+      intro.classList.add('fade-out');
+      setTimeout(() => {
+        intro.classList.add('hidden');
+        main.classList.remove('hidden');
+        setTimeout(() => {
+          main.classList.add('fade-in');
+        }, 50);
+      }, 950);
+    }, 850);
+  }, 1700);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -78,31 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }, 1400);
 
-  // --- Rest of page logic follows ---
-  // --- Intro animation and main section reveal ---
-  const intro = document.getElementById('intro');
-  const main = document.getElementById('main');
-  const introText1 = document.getElementById('introText1');
-  introText1.classList.add('show');
-  introText1.classList.remove('hide');
-  introText1.classList.remove('outro');
-  setTimeout(() => {
-    introText1.classList.remove('show');
-    introText1.classList.add('outro');
-    setTimeout(() => {
-      introText1.classList.remove('outro');
-      introText1.classList.add('hidden');
-      intro.classList.add('fade-out');
-      setTimeout(() => {
-        intro.classList.add('hidden');
-        main.classList.remove('hidden');
-        setTimeout(() => {
-          main.classList.add('fade-in');
-        }, 50);
-      }, 950);
-    }, 850); // fadeOut duration
-  }, 1700);
-
+  // --- Main site logic after verification (do not show intro until verified) ---
   // Orbital Text Orange Glow Mouse Animation
   const orbitalText = document.getElementById('orbitalText');
   if (orbitalText) {

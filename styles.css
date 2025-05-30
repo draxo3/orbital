@@ -9,6 +9,7 @@ body {
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body::before {
@@ -35,8 +36,8 @@ body::before {
   font-weight: bold;
   animation: fadeIn 2s ease forwards;
   background-color: rgb(20, 20, 20);
-  z-index: 10;
   position: relative;
+  z-index: 10;
 }
 
 .main {
@@ -63,7 +64,6 @@ body::before {
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 1;
   padding: 2rem;
 }
 
@@ -73,7 +73,7 @@ body::before {
   gap: 1rem;
   margin-bottom: 2rem;
   cursor: pointer;
-  transition: transform 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .logo-img {
@@ -116,12 +116,13 @@ body::before {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
   border-color: #f57f41;
-  box-shadow: 0 0 8px #f57f41;
+  box-shadow: 0 0 10px #f57f41;
+  transform: translateY(-2px);
 }
 
 .info-section {
@@ -131,6 +132,14 @@ body::before {
   max-width: 900px;
   margin: 0 auto;
   line-height: 1.6;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.info-section.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .info-section h2 {

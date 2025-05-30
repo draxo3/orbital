@@ -1,7 +1,8 @@
-// --- Browser Verification and CAPTCHA ---
+// --- Browser Verification ---
 const acceptedBrowsers = [
   'Chrome', 'Google', 'Edge', 'Firefox', 'Brave', 'Opera', 'Opera GX'
 ];
+
 function detectBrowser() {
   const ua = navigator.userAgent;
   if (ua.includes("OPR") || ua.includes("Opera")) return "Opera";
@@ -15,55 +16,6 @@ function detectBrowser() {
   return "Unknown";
 }
 
-// Simple math captcha generator
-function generateCaptcha() {
-  const a = Math.floor(5 + Math.random() * 10);
-  const b = Math.floor(1 + Math.random() * 7);
-  const op = Math.random() > 0.5 ? "+" : "-";
-  const answer = op === "+" ? a + b : a - b;
-  return {
-    question: `What is ${a} ${op} ${b}?`,
-    answer: answer.toString()
-  };
-}
-
-function showCaptcha() {
-  document.getElementById('verifyStep').style.display = 'none';
-  document.getElementById('captchaOuter').style.display = 'flex';
-  // Set up captcha
-  const captcha = generateCaptcha();
-  document.getElementById('captchaQuestion').innerText = captcha.question;
-  document.getElementById('captchaError').innerText = '';
-  document.getElementById('captchaInput').value = '';
-  document.getElementById('captchaInput').focus();
-
-  document.getElementById('captchaForm').onsubmit = function(e) {
-    e.preventDefault();
-    document.getElementById('captchaSubmit').click();
-  };
-
-  document.getElementById('captchaSubmit').onclick = function() {
-    const input = document.getElementById('captchaInput').value.trim();
-    if (input === captcha.answer) {
-      // Verified
-      document.getElementById('browserVerify').style.opacity = '0';
-      setTimeout(() => {
-        document.getElementById('browserVerify').style.display = 'none';
-        document.getElementById('appContent').style.display = '';
-        // Show intro after verification!
-        showIntro();
-      }, 450);
-    } else {
-      document.getElementById('captchaError').innerText = 'Incorrect answer! Please try again.';
-      document.getElementById('captchaInput').focus();
-    }
-  };
-  document.getElementById('captchaInput').onkeydown = function(e) {
-    if (e.key === "Enter") document.getElementById('captchaSubmit').click();
-  };
-}
-
-// Show the animated intro after verification (again)
 function showIntro() {
   const intro = document.getElementById('intro');
   const main = document.getElementById('main');
@@ -97,11 +49,18 @@ window.addEventListener('DOMContentLoaded', () => {
   const browser = detectBrowser();
   setTimeout(() => {
     if (acceptedBrowsers.some(b => browser.toLowerCase().includes(b.toLowerCase()))) {
-      // Success, go to captcha
+      // Success
       document.getElementById('bvVerifyingText').innerText = "Browser verified!";
-      document.getElementById('bvSubtitle').innerText = "Please complete the human verification below.";
+      document.getElementById('bvSubtitle').innerText = "Verification successful. Loading site...";
       document.getElementById('bvCheckBox').style.display = "none";
-      setTimeout(showCaptcha, 900);
+      setTimeout(() => {
+        document.getElementById('browserVerify').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('browserVerify').style.display = 'none';
+          document.getElementById('appContent').style.display = '';
+          showIntro();
+        }, 500);
+      }, 1200);
     } else {
       // Fail
       document.getElementById('bvVerifyingText').innerText = "Browser not supported!";

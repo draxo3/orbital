@@ -98,13 +98,12 @@ body::before {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn:hover {
   border-color: #f57f41;
   box-shadow: 0 0 10px #f57f41;
-  transform: translateY(-2px);
 }
 
 .info-section {

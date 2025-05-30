@@ -1,20 +1,16 @@
-// Orbital Executor Main Scripts (at least 100 lines, modern, well-commented)
-
-// ------ 2-step Intro Animation ------
+// --- Dual Intro Animation ---
 document.addEventListener('DOMContentLoaded', () => {
   const intro = document.getElementById('intro');
   const main = document.getElementById('main');
   const introText1 = document.getElementById('introText1');
   const introText2 = document.getElementById('introText2');
 
-  // Show first intro text with fade in
-  introText1.classList.add('fadein');
+  // Animate the first intro text (fade in)
   introText1.classList.add('show');
   introText2.classList.remove('show');
   introText2.classList.remove('hide');
   introText1.classList.remove('hide');
 
-  // Step 1: Fade out first, fade in second intro
   setTimeout(() => {
     introText1.classList.remove('show');
     introText1.classList.add('hide');
@@ -22,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
       introText1.classList.remove('hide');
       introText1.classList.add('hidden');
       introText2.classList.add('show');
-      // Step 2: Show second for a bit, then fade out and website in
       setTimeout(() => {
         introText2.classList.remove('show');
         introText2.classList.add('hide');
@@ -35,32 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
               main.classList.add('fade-in');
             }, 50);
           }, 950);
-        }, 950); // keep second intro a little while
+        }, 950);
       }, 1500);
     }, 700);
   }, 1600);
 });
-
-// ------ Reveal panels on scroll (2x2 grid + community) ------
-function revealPanelOnScroll(panelId) {
-  const panel = document.getElementById(panelId);
-  if (!panel) return;
-  function onScroll() {
-    const rect = panel.getBoundingClientRect();
-    const windowH = window.innerHeight || document.documentElement.clientHeight;
-    if (rect.top < windowH - 100) {
-      panel.classList.add('reveal');
-      panel.classList.remove('hide-on-load');
-      window.removeEventListener('scroll', onScroll);
-    }
-  }
-  window.addEventListener('scroll', onScroll);
-  onScroll();
-}
-
-// List of all panel ids (2x2 grid + community)
-const gridPanels = ['featuresPanel','infoPanel','advancedPanel','faqPanel','communityPanel'];
-gridPanels.forEach(panelId => revealPanelOnScroll(panelId));
 
 // ------ Orbital Text Animation ------
 const orbitalText = document.getElementById('orbitalText');
@@ -69,7 +43,7 @@ if (orbitalText) {
     const { left, width } = orbitalText.getBoundingClientRect();
     const x = (e.clientX - left) / width - 0.5;
     orbitalText.style.textShadow = `
-      ${x*24}px 2px 32px #3498ffcc,
+      ${x*24}px 2px 32px #fff8,
       0 2px 24px #202e46
     `;
   });
@@ -87,10 +61,7 @@ if (installBtn && tosModal) {
   installBtn.addEventListener('click', () => {
     tosModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    // Focus accept for accessibility
-    setTimeout(() => { 
-      if (tosAccept) tosAccept.focus(); 
-    }, 100);
+    setTimeout(() => { if (tosAccept) tosAccept.focus(); }, 100);
   });
 }
 if (tosDecline && tosModal) {
@@ -115,25 +86,59 @@ if (openTosFooter && tosModal) {
     e.preventDefault();
     tosModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => { 
-      if (tosAccept) tosAccept.focus();
-    }, 100);
+    setTimeout(() => { if (tosAccept) tosAccept.focus(); }, 100);
   });
 }
 
-// ------ FAQ Expand/Collapse Animation ------
-document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', function () {
-    const ans = this.nextElementSibling;
-    if (!ans) return;
-    if (ans.style.display === 'block') {
-      ans.style.display = '';
-    } else {
-      ans.style.display = 'block';
-    }
-    ans.style.transition = 'all 0.3s cubic-bezier(.77,0,.175,1)';
+// ------ 3D Image Hover Effect ------
+const img3d = document.getElementById('orbitalImg');
+if (img3d) {
+  img3d.addEventListener('mousemove', (e) => {
+    const rect = img3d.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotateX = ((cy - y) / cy) * 10; // max 10deg
+    const rotateY = ((x - cx) / cx) * 12;
+    img3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    img3d.style.boxShadow = `0 8px 44px #111b 0 2px 12px #0a0a0a`;
   });
-});
+  img3d.addEventListener('mouseleave', () => {
+    img3d.style.transform = 'none';
+    img3d.style.boxShadow = '';
+  });
+  img3d.addEventListener('mousedown', () => {
+    img3d.style.transform += ' scale(0.97)';
+  });
+  img3d.addEventListener('mouseup', () => {
+    img3d.style.transform = img3d.style.transform.replace(' scale(0.97)', '');
+  });
+}
+
+// ------ Accessibility: Trap focus in TOS modal ------
+if (tosModal) {
+  tosModal.addEventListener('keydown', function(e) {
+    if (tosModal.classList.contains('hidden')) return;
+    const focusable = tosModal.querySelectorAll('button');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  });
+}
 
 // ------ Keyboard Escape closes TOS modal ------
 document.addEventListener('keydown', (e) => {
@@ -162,64 +167,3 @@ document.querySelectorAll('.btn.glow-btn').forEach(btn => {
     this.style.borderColor = '';
   });
 });
-
-// ------ Responsive Panel Reveal on Load ------
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.panel').forEach(panel => {
-      const rect = panel.getBoundingClientRect();
-      if (rect.top < (window.innerHeight || document.documentElement.clientHeight) - 80) {
-        panel.classList.add('reveal');
-        panel.classList.remove('hide-on-load');
-      }
-    });
-  }, 800);
-});
-
-// ------ Community Panel Hover ------
-const communityPanel = document.getElementById('communityPanel');
-if (communityPanel) {
-  communityPanel.addEventListener('mouseenter', () => {
-    communityPanel.style.boxShadow = '0 0 24px #3498ff77';
-  });
-  communityPanel.addEventListener('mouseleave', () => {
-    communityPanel.style.boxShadow = '';
-  });
-}
-
-// ------ Accessibility: Trap focus in TOS modal ------
-if (tosModal) {
-  tosModal.addEventListener('keydown', function(e) {
-    if (tosModal.classList.contains('hidden')) return;
-    const focusable = tosModal.querySelectorAll('button');
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.key === 'Tab') {
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          last.focus();
-          e.preventDefault();
-        }
-      } else {
-        if (document.activeElement === last) {
-          first.focus();
-          e.preventDefault();
-        }
-      }
-    }
-  });
-}
-
-// ------ Extra: Scroll to panels from URL hash ------
-window.addEventListener('hashchange', () => {
-  const hash = location.hash.replace('#', '');
-  if (hash) {
-    const el = document.getElementById(hash);
-    if (el) {
-      el.scrollIntoView({behavior: 'smooth'});
-    }
-  }
-});
-
-// ------ End of script.js ------

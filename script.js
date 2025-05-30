@@ -11,8 +11,10 @@ function detectBrowser() {
   if (ua.includes("Firefox")) return "Firefox";
   if (ua.includes("Chrome")) {
     if (ua.includes("Brave")) return "Brave";
+    if (ua.includes("Google")) return "Google";
     return "Chrome";
   }
+  if (ua.includes("Google")) return "Google";
   return "Unknown";
 }
 
@@ -65,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
       // Fail
       document.getElementById('bvVerifyingText').innerText = "Browser not supported!";
       document.getElementById('bvVerifyingText').style.color = "#ff9100";
-      document.getElementById('bvSubtitle').innerText = "Sorry, your browser is not supported. Please use Chrome, Edge, Firefox, Brave, or Opera.";
+      document.getElementById('bvSubtitle').innerText = "Sorry, your browser is not supported. Please use Chrome, Edge, Firefox, Brave, Opera, or Google.";
       document.getElementById('bvCheckBox').style.opacity = 0.7;
       document.getElementById('bvDesc').innerText = "Orbital.exe cannot continue with this browser. Please try again with a supported browser.";
     }

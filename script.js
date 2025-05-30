@@ -1,5 +1,5 @@
 window.onload = () => {
-  // Transition from intro to main
+  // Fade intro out and main content in
   setTimeout(() => {
     const intro = document.getElementById('intro');
     intro.classList.add('fade-out');
@@ -12,7 +12,7 @@ window.onload = () => {
   }, 2000);
 };
 
-// Scroll reveal
+// Scroll reveal for info section
 window.addEventListener('scroll', () => {
   const info = document.getElementById('info');
   const rect = info.getBoundingClientRect();

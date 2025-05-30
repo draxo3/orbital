@@ -67,37 +67,19 @@ body::before {
   padding: 2rem;
 }
 
-.logo-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.orbital-text {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #f57f41;
   margin-bottom: 2rem;
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-.logo-img {
-  width: 100px;
+  letter-spacing: 2px;
+  position: relative;
+  cursor: default;
   transition: transform 0.4s ease;
 }
 
-.logo-text {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #f57f41;
-  letter-spacing: 1px;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.logo-wrapper:hover .logo-img {
-  transform: translateX(-40px);
-}
-
-.logo-wrapper:hover .logo-text {
-  opacity: 1;
-  transform: translateX(0);
+.orbital-text:hover {
+  transform: translateX(10px);
 }
 
 .buttons {

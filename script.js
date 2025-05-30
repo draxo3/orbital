@@ -1,6 +1,6 @@
 // --- Browser Verification ---
 const acceptedBrowsers = [
-  'Chrome', '', 'Edge', 'Firefox', 'Brave', 'Opera', 'Opera GX'
+  'Chrome', 'Google', '', 'Firefox', 'Brave', 'Opera', 'Opera GX'
 ];
 
 function isMobileDevice() {

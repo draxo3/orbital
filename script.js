@@ -1,49 +1,37 @@
-// --- Dual Intro Animation ---
+// Intro animation and main section reveal
 document.addEventListener('DOMContentLoaded', () => {
   const intro = document.getElementById('intro');
   const main = document.getElementById('main');
   const introText1 = document.getElementById('introText1');
-  const introText2 = document.getElementById('introText2');
-
-  // Animate the first intro text (fade in)
   introText1.classList.add('show');
-  introText2.classList.remove('show');
-  introText2.classList.remove('hide');
   introText1.classList.remove('hide');
-
+  introText1.classList.remove('outro');
   setTimeout(() => {
     introText1.classList.remove('show');
-    introText1.classList.add('hide');
+    introText1.classList.add('outro');
     setTimeout(() => {
-      introText1.classList.remove('hide');
+      introText1.classList.remove('outro');
       introText1.classList.add('hidden');
-      introText2.classList.add('show');
+      intro.classList.add('fade-out');
       setTimeout(() => {
-        introText2.classList.remove('show');
-        introText2.classList.add('hide');
+        intro.classList.add('hidden');
+        main.classList.remove('hidden');
         setTimeout(() => {
-          intro.classList.add('fade-out');
-          setTimeout(() => {
-            intro.classList.add('hidden');
-            main.classList.remove('hidden');
-            setTimeout(() => {
-              main.classList.add('fade-in');
-            }, 50);
-          }, 950);
-        }, 950);
-      }, 1500);
-    }, 700);
-  }, 1600);
+          main.classList.add('fade-in');
+        }, 50);
+      }, 950);
+    }, 850); // fadeOut duration
+  }, 1700);
 });
 
-// ------ Orbital Text Animation ------
+// Orbital Text Orange Glow Mouse Animation
 const orbitalText = document.getElementById('orbitalText');
 if (orbitalText) {
   orbitalText.addEventListener('mousemove', e => {
     const { left, width } = orbitalText.getBoundingClientRect();
     const x = (e.clientX - left) / width - 0.5;
     orbitalText.style.textShadow = `
-      ${x*24}px 2px 32px #ccc8,
+      ${x*24}px 2px 32px #ff9100cc,
       0 2px 24px #222
     `;
   });
@@ -52,7 +40,33 @@ if (orbitalText) {
   });
 }
 
-// ------ Install Button TOS Modal Logic ------
+// 3D Image Mouse Parallax
+const img3d = document.getElementById('orbitalImg');
+if (img3d) {
+  img3d.addEventListener('mousemove', (e) => {
+    const rect = img3d.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotateX = ((cy - y) / cy) * 10;
+    const rotateY = ((x - cx) / cx) * 12;
+    img3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    img3d.style.boxShadow = `0 8px 44px #ff910099, 0 2px 12px #0a0a0a`;
+  });
+  img3d.addEventListener('mouseleave', () => {
+    img3d.style.transform = 'none';
+    img3d.style.boxShadow = '';
+  });
+  img3d.addEventListener('mousedown', () => {
+    img3d.style.transform += ' scale(0.97)';
+  });
+  img3d.addEventListener('mouseup', () => {
+    img3d.style.transform = img3d.style.transform.replace(' scale(0.97)', '');
+  });
+}
+
+// Install Button TOS Modal Logic
 const installBtn = document.getElementById('installBtn');
 const tosModal = document.getElementById('tosModal');
 const tosAccept = document.getElementById('tosAccept');
@@ -79,7 +93,7 @@ if (tosAccept && tosModal) {
   });
 }
 
-// ------ TOS Link in Footer ------
+// TOS Link in Footer
 const openTosFooter = document.getElementById('openTosFooter');
 if (openTosFooter && tosModal) {
   openTosFooter.addEventListener('click', (e) => {
@@ -90,57 +104,7 @@ if (openTosFooter && tosModal) {
   });
 }
 
-// ------ 3D Image Hover Effect ------
-const img3d = document.getElementById('orbitalImg');
-if (img3d) {
-  img3d.addEventListener('mousemove', (e) => {
-    const rect = img3d.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-    const rotateX = ((cy - y) / cy) * 10; // max 10deg
-    const rotateY = ((x - cx) / cx) * 12;
-    img3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-    img3d.style.boxShadow = `0 8px 44px #222b 0 2px 12px #1a1a1a`;
-  });
-  img3d.addEventListener('mouseleave', () => {
-    img3d.style.transform = 'none';
-    img3d.style.boxShadow = '';
-  });
-  img3d.addEventListener('mousedown', () => {
-    img3d.style.transform += ' scale(0.97)';
-  });
-  img3d.addEventListener('mouseup', () => {
-    img3d.style.transform = img3d.style.transform.replace(' scale(0.97)', '');
-  });
-}
-
-// ------ Accessibility: Trap focus in TOS modal ------
-if (tosModal) {
-  tosModal.addEventListener('keydown', function(e) {
-    if (tosModal.classList.contains('hidden')) return;
-    const focusable = tosModal.querySelectorAll('button');
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.key === 'Tab') {
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          last.focus();
-          e.preventDefault();
-        }
-      } else {
-        if (document.activeElement === last) {
-          first.focus();
-          e.preventDefault();
-        }
-      }
-    }
-  });
-}
-
-// ------ Keyboard Escape closes TOS modal ------
+// Keyboard Escape closes TOS modal
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && tosModal && !tosModal.classList.contains('hidden')) {
     tosModal.classList.add('hidden');
@@ -148,19 +112,19 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ------ Enhance Button Glows and Focus ------
+// Glow focus/hover for orange
 document.querySelectorAll('.btn.glow-btn').forEach(btn => {
   btn.addEventListener('mouseenter', function() {
-    this.style.boxShadow = '0 0 0 2px #aaaaaa66, 0 0 16px 2px #aaaaaa';
-    this.style.borderColor = '#aaaaaa';
+    this.style.boxShadow = '0 0 0 2px #ff910066, 0 0 16px 2px #ff9100';
+    this.style.borderColor = '#ff9100';
   });
   btn.addEventListener('mouseleave', function() {
     this.style.boxShadow = '';
     this.style.borderColor = '';
   });
   btn.addEventListener('focus', function() {
-    this.style.boxShadow = '0 0 0 2px #aaaaaa88, 0 0 12px 2px #aaaaaa';
-    this.style.borderColor = '#aaaaaa';
+    this.style.boxShadow = '0 0 0 2px #ff910088, 0 0 12px 2px #ff9100';
+    this.style.borderColor = '#ff9100';
   });
   btn.addEventListener('blur', function() {
     this.style.boxShadow = '';

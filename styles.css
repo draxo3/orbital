@@ -1,14 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  background: #181818 url('bgboxes.png');
-  background-size: 60px 60px;
-  background-repeat: repeat;
-  background-position: center center;
+  background: #181818;
   color: #f5f5f5;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
@@ -17,32 +8,16 @@ body {
   min-height: 100vh;
 }
 
-/* "SCROLL" hint styling */
-.scroll-hint {
+/* The box grid background, from image 2 */
+.background-boxes {
   position: fixed;
-  left: 50%;
-  top: 70vh;
-  z-index: 9;
-  transform: translate(-50%,0) scale(1);
-  font-size: 2.65rem;
-  font-weight: 900;
-  letter-spacing: 1.2rem;
-  color: #ff9100;
-  text-shadow: 0 2px 32px #000, 0 0 22px #ff910088;
-  opacity: 0;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 1;
   pointer-events: none;
-  user-select: none;
-  animation: scroll-bounce 2s infinite;
-  transition: opacity 0.5s, transform 0.7s;
-}
-
-@keyframes scroll-bounce {
-  0%   { transform: translate(-50%,0) scale(1);    opacity: 1;}
-  12%  { transform: translate(-50%,12px) scale(1.08); }
-  24%  { transform: translate(-50%,0) scale(1.03);}
-  36%  { transform: translate(-50%,10px) scale(1.06);}
-  48%  { transform: translate(-50%,0) scale(1);}
-  100% { transform: translate(-50%,0) scale(1);}
+  background: url('bgboxes.png');
+  background-size: 60px 60px;
+  background-repeat: repeat;
+  background-position: center center;
 }
 
 .intro {
@@ -226,9 +201,6 @@ body {
   position: relative;
   z-index: 2;
   overflow: visible;
-}
-.footer-bgboxes {
-  display: none;
 }
 .footer-content {
   position: relative;

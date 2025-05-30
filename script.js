@@ -7,13 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const introText1 = document.getElementById('introText1');
   const introText2 = document.getElementById('introText2');
 
-  // Show first intro text
+  // Show first intro text with fade in
+  introText1.classList.add('fadein');
   introText1.classList.add('show');
   introText2.classList.remove('show');
   introText2.classList.remove('hide');
   introText1.classList.remove('hide');
 
-  // Step 1: Fade out first, fade in second
+  // Step 1: Fade out first, fade in second intro
   setTimeout(() => {
     introText1.classList.remove('show');
     introText1.classList.add('hide');
@@ -49,6 +50,7 @@ function revealPanelOnScroll(panelId) {
     const windowH = window.innerHeight || document.documentElement.clientHeight;
     if (rect.top < windowH - 100) {
       panel.classList.add('reveal');
+      panel.classList.remove('hide-on-load');
       window.removeEventListener('scroll', onScroll);
     }
   }
@@ -168,6 +170,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const rect = panel.getBoundingClientRect();
       if (rect.top < (window.innerHeight || document.documentElement.clientHeight) - 80) {
         panel.classList.add('reveal');
+        panel.classList.remove('hide-on-load');
       }
     });
   }, 800);

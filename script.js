@@ -5,15 +5,21 @@ const acceptedBrowsers = [
 
 function detectBrowser() {
   const ua = navigator.userAgent;
-  if (ua.includes("OPR") || ua.includes("Opera")) return "Opera";
-  if (ua.includes("Edg")) return "Edge";
-  if (ua.includes("Brave")) return "Brave";
-  if (ua.includes("Firefox")) return "Firefox";
-  if (ua.includes("Chrome")) {
-    if (ua.includes("Brave")) return "Brave";
-    if (ua.includes("Google")) return "Google";
-    return "Chrome";
-  if (ua.includes("Google")) return "Google";
+
+  // Normalize to lowercase for easier matching
+  const uaLower = ua.toLowerCase();
+
+  // Accept all the listed browsers, even mobile variants
+  if (uaLower.includes("crios") || uaLower.includes("chrome")) return "Chrome";
+  if (uaLower.includes("fxios") || uaLower.includes("firefox")) return "Firefox";
+  if (uaLower.includes("edgios") || uaLower.includes("edge")) return "Edge";
+  if (uaLower.includes("brave")) return "Brave";
+  if (uaLower.includes("opera") || uaLower.includes("opr")) return "Opera";
+  if (uaLower.includes("opera gx")) return "Opera GX";
+  if (uaLower.includes("google")) return "Google";
+  // Accept also "safari" on iOS as "Google" if "GSA" present (Google App on iOS)
+  if (uaLower.includes("gsa")) return "Google";
+
   return "Unknown";
 }
 

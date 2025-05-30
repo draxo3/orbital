@@ -13,7 +13,6 @@ function detectBrowser() {
     if (ua.includes("Brave")) return "Brave";
     if (ua.includes("Google")) return "Google";
     return "Chrome";
-  }
   if (ua.includes("Google")) return "Google";
   return "Unknown";
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbital Executor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="intro" id="intro">
+    <h1>THE FUTURE OF EXECUTORS</h1>
+  </div>
+
+  <main class="main hidden" id="main">
+    <div class="center-container">
+      <div class="logo-wrapper">
+        <img src="logo.png" alt="Orbital Logo" class="logo-img" />
+        <div class="logo-text">ORBITAL</div>
+      </div>
+      <div class="buttons">
+        <button class="btn">Install</button>
+        <button class="btn">Discord</button>
+        <button class="btn">Contact</button>
+      </div>
+    </div>
+
+    <section class="info-section">
+      <h2>How to Use</h2>
+      <p>
+        Orbital is a cutting-edge Roblox executor designed for performance and ease of use.
+        <br /><br />
+        <strong>Step 1:</strong> Download the installer via the Install button above.<br />
+        <strong>Step 2:</strong> Launch the installer and follow on-screen instructions.<br />
+        <strong>Step 3:</strong> Open Roblox and attach Orbital.<br />
+        <strong>Step 4:</strong> Inject your script and enjoy advanced execution.<br /><br />
+        Join our Discord for updates, support, and community scripts.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('intro').classList.add('fade-out');
+        setTimeout(() => {
+          document.getElementById('intro').style.display = 'none';
+          document.getElementById('main').classList.remove('hidden');
+          document.getElementById('main').classList.add('fade-in');
+        }, 1000);
+      }, 2000);
+    };
+  </script>
+</body>
+</html>

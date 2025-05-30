@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Orbital Executor</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -24,31 +24,43 @@
       </div>
     </div>
 
-    <section class="info-section">
+    <section class="info-section" id="info">
       <h2>How to Use</h2>
       <p>
         Orbital is a cutting-edge Roblox executor designed for performance and ease of use.
         <br /><br />
-        <strong>Step 1:</strong> Download the installer via the Install button above.<br />
-        <strong>Step 2:</strong> Launch the installer and follow on-screen instructions.<br />
+        <strong>Step 1:</strong> Download via the Install button.<br />
+        <strong>Step 2:</strong> Launch the installer and follow steps.<br />
         <strong>Step 3:</strong> Open Roblox and attach Orbital.<br />
         <strong>Step 4:</strong> Inject your script and enjoy advanced execution.<br /><br />
-        Join our Discord for updates, support, and community scripts.
+        Join our Discord for updates and community scripts.
       </p>
     </section>
   </main>
 
   <script>
+    // Intro to main transition
     window.onload = () => {
       setTimeout(() => {
         document.getElementById('intro').classList.add('fade-out');
         setTimeout(() => {
           document.getElementById('intro').style.display = 'none';
-          document.getElementById('main').classList.remove('hidden');
-          document.getElementById('main').classList.add('fade-in');
+          const main = document.getElementById('main');
+          main.classList.remove('hidden');
+          main.classList.add('fade-in');
         }, 1000);
       }, 2000);
     };
+
+    // Scroll reveal for info section
+    window.addEventListener('scroll', () => {
+      const info = document.getElementById('info');
+      const rect = info.getBoundingClientRect();
+      const screenPosition = window.innerHeight / 1.2;
+      if (rect.top < screenPosition) {
+        info.classList.add('reveal');
+      }
+    });
   </script>
 </body>
 </html>

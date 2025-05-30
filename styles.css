@@ -134,7 +134,7 @@ body::before {
   padding: 0.75rem 2rem;
   background: #232323;
   border: 2px solid #2d2d2d;
-  border-radius: 1px;
+  border-radius: 5px;
   color: #fff;
   font-size: 1.1rem;
   font-weight: 500;
@@ -178,73 +178,6 @@ body::before {
   will-change: transform;
   background: #19191e;
   user-select: none;
-}
-
-.description {
-  margin-top: 10px;
-  font-size: 1.13rem;
-  color: #efefef;
-  max-width: 450px;
-}
-.description h2 {
-  color: #ff9100;
-  font-size: 1.35rem;
-  margin-bottom: 0.45em;
-}
-.description p {
-  margin-bottom: 0.6em;
-  color: #e0e0e0;
-}
-.orange-accent {
-  color: #ff9100;
-  font-weight: 700;
-}
-.more-info {
-  font-size: 1em;
-  color: #bbbbbb;
-  margin-top: 0.3em;
-  margin-bottom: 1.7em;
-}
-
-.spacer {
-  height: 18px;
-}
-
-.features {
-  margin-bottom: 2.2em;
-  margin-top: 1em;
-  color: #ff9100;
-}
-.features h3 {
-  color: #ff9100;
-  margin-bottom: 0.5em;
-  font-size: 1.1em;
-  letter-spacing: 1px;
-}
-.features ul {
-  list-style: none;
-  padding: 0;
-  color: #fff;
-  font-size: 1.03em;
-}
-.features li {
-  margin-bottom: 0.4em;
-  color: #fedcb4;
-  text-align: left;
-  margin-left: 1em;
-}
-
-.join-community {
-  margin-top: 1.5em;
-  color: #fff;
-}
-.join-community h3 {
-  color: #ff9100;
-  margin-bottom: 0.4em;
-}
-.join-community p {
-  color: #dadada;
-  margin-bottom: 0.5em;
 }
 
 .blue-accent,
@@ -361,6 +294,7 @@ body::before {
 .tos-accept {
   border-color: #ff9100;
   color: #ff9100;
+  border-radius: 5px;
 }
 .tos-accept:hover {
   background: #2d2115;
@@ -369,6 +303,7 @@ body::before {
 .tos-decline {
   border-color: #555;
   color: #888;
+  border-radius: 5px;
 }
 .tos-decline:hover {
   background: #1a1a1a;

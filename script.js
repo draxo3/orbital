@@ -15,7 +15,7 @@ function detectBrowser() {
   // Accept all the listed browsers, even mobile variants
   if (uaLower.includes("crios") || uaLower.includes("chrome")) return "Chrome";
   if (uaLower.includes("fxios") || uaLower.includes("firefox")) return "Firefox";
-  if (uaLower.includes("edgios") || uaLower.includes("edge")) return "Edge";
+ 
   if (uaLower.includes("brave")) return "Brave";
   if (uaLower.includes("opera gx")) return "Opera GX";
   if (uaLower.includes("opera") || uaLower.includes("opr")) return "Opera";

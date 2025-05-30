@@ -3,10 +3,13 @@ const acceptedBrowsers = [
   'Chrome', 'Google', 'Edge', 'Firefox', 'Brave', 'Opera', 'Opera GX'
 ];
 
+function isMobileDevice() {
+  // Simple mobile detection (covers iOS, Android, etc)
+  return /android|iphone|ipad|ipod|opera mini|iemobile|mobile|tablet|blackberry|webos|windows phone/i.test(navigator.userAgent);
+}
+
 function detectBrowser() {
   const ua = navigator.userAgent;
-
-  // Normalize to lowercase for easier matching
   const uaLower = ua.toLowerCase();
 
   // Accept all the listed browsers, even mobile variants
@@ -14,12 +17,10 @@ function detectBrowser() {
   if (uaLower.includes("fxios") || uaLower.includes("firefox")) return "Firefox";
   if (uaLower.includes("edgios") || uaLower.includes("edge")) return "Edge";
   if (uaLower.includes("brave")) return "Brave";
-  if (uaLower.includes("opera") || uaLower.includes("opr")) return "Opera";
   if (uaLower.includes("opera gx")) return "Opera GX";
+  if (uaLower.includes("opera") || uaLower.includes("opr")) return "Opera";
   if (uaLower.includes("google")) return "Google";
-  // Accept also "safari" on iOS as "Google" if "GSA" present (Google App on iOS)
   if (uaLower.includes("gsa")) return "Google";
-
   return "Unknown";
 }
 
@@ -52,6 +53,16 @@ function showIntro() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Mobile device detection
+  if (isMobileDevice()) {
+    document.getElementById('bvVerifyingText').innerText = "Sorry but Mobile is not supported";
+    document.getElementById('bvVerifyingText').style.color = "#ff9100";
+    document.getElementById('bvSubtitle').innerText = "Please switch on a PC or tablett";
+    document.getElementById('bvCheckBox').style.opacity = 0.7;
+    document.getElementById('bvDesc').innerText = "Orbital.exe cannot continue on mobile devices. Please use a PC or tablet.";
+    return;
+  }
+
   // Browser verification step
   const browser = detectBrowser();
   setTimeout(() => {

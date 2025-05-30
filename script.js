@@ -131,29 +131,3 @@ document.querySelectorAll('.btn.glow-btn').forEach(btn => {
     this.style.borderColor = '';
   });
 });
-
-// SCROLL hint logic
-let scrollHint = document.getElementById('scrollHint');
-let scrollHintShown = false;
-let userHasScrolled = false;
-
-function showScrollHint() {
-  if (!userHasScrolled && !scrollHintShown) {
-    scrollHint.style.opacity = "1";
-    scrollHintShown = true;
-  }
-}
-function hideScrollHint() {
-  if (scrollHintShown) {
-    scrollHint.style.opacity = "0";
-    scrollHintShown = false;
-  }
-}
-setTimeout(() => {
-  if (!userHasScrolled) showScrollHint();
-}, 3000);
-
-window.addEventListener('scroll', () => {
-  userHasScrolled = true;
-  hideScrollHint();
-});

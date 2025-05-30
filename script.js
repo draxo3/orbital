@@ -1,29 +1,53 @@
 // Orbital Executor Main Scripts (at least 100 lines, modern, well-commented)
 
-// ------ Fade-in main after intro animation ------
+// ------ 2-step Intro Animation ------
 document.addEventListener('DOMContentLoaded', () => {
   const intro = document.getElementById('intro');
   const main = document.getElementById('main');
+  const introText1 = document.getElementById('introText1');
+  const introText2 = document.getElementById('introText2');
+
+  // Show first intro text
+  introText1.classList.add('show');
+  introText2.classList.remove('show');
+  introText2.classList.remove('hide');
+  introText1.classList.remove('hide');
+
+  // Step 1: Fade out first, fade in second
   setTimeout(() => {
-    intro.classList.add('fade-out');
+    introText1.classList.remove('show');
+    introText1.classList.add('hide');
     setTimeout(() => {
-      intro.classList.add('hidden');
-      main.classList.remove('hidden');
+      introText1.classList.remove('hide');
+      introText1.classList.add('hidden');
+      introText2.classList.add('show');
+      // Step 2: Show second for a bit, then fade out and website in
       setTimeout(() => {
-        main.classList.add('fade-in');
-      }, 50);
-    }, 950);
-  }, 1700);
+        introText2.classList.remove('show');
+        introText2.classList.add('hide');
+        setTimeout(() => {
+          intro.classList.add('fade-out');
+          setTimeout(() => {
+            intro.classList.add('hidden');
+            main.classList.remove('hidden');
+            setTimeout(() => {
+              main.classList.add('fade-in');
+            }, 50);
+          }, 950);
+        }, 950); // keep second intro a little while
+      }, 1500);
+    }, 700);
+  }, 1600);
 });
 
-// ------ Reveal panels on scroll ------
+// ------ Reveal panels on scroll (2x2 grid + community) ------
 function revealPanelOnScroll(panelId) {
   const panel = document.getElementById(panelId);
   if (!panel) return;
   function onScroll() {
     const rect = panel.getBoundingClientRect();
     const windowH = window.innerHeight || document.documentElement.clientHeight;
-    if (rect.top < windowH - 80) {
+    if (rect.top < windowH - 100) {
       panel.classList.add('reveal');
       window.removeEventListener('scroll', onScroll);
     }
@@ -31,23 +55,10 @@ function revealPanelOnScroll(panelId) {
   window.addEventListener('scroll', onScroll);
   onScroll();
 }
-['featuresPanel','infoPanel','advancedPanel','faqPanel','communityPanel'].forEach(panelId => {
-  revealPanelOnScroll(panelId);
-});
 
-// ------ How to Use panel: only appears when scrolled ------
-const infoPanel = document.getElementById('infoPanel');
-if (infoPanel) infoPanel.style.visibility = 'hidden';
-function showInfoPanelIfVisible() {
-  if (!infoPanel) return;
-  const rect = infoPanel.getBoundingClientRect();
-  const windowH = window.innerHeight || document.documentElement.clientHeight;
-  if (rect.top < windowH - 80) {
-    infoPanel.style.visibility = 'visible';
-    window.removeEventListener('scroll', showInfoPanelIfVisible);
-  }
-}
-window.addEventListener('scroll', showInfoPanelIfVisible);
+// List of all panel ids (2x2 grid + community)
+const gridPanels = ['featuresPanel','infoPanel','advancedPanel','faqPanel','communityPanel'];
+gridPanels.forEach(panelId => revealPanelOnScroll(panelId));
 
 // ------ Orbital Text Animation ------
 const orbitalText = document.getElementById('orbitalText');
@@ -74,6 +85,10 @@ if (installBtn && tosModal) {
   installBtn.addEventListener('click', () => {
     tosModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    // Focus accept for accessibility
+    setTimeout(() => { 
+      if (tosAccept) tosAccept.focus(); 
+    }, 100);
   });
 }
 if (tosDecline && tosModal) {
@@ -98,6 +113,9 @@ if (openTosFooter && tosModal) {
     e.preventDefault();
     tosModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    setTimeout(() => { 
+      if (tosAccept) tosAccept.focus();
+    }, 100);
   });
 }
 
@@ -106,7 +124,11 @@ document.querySelectorAll('.faq-question').forEach(q => {
   q.addEventListener('click', function () {
     const ans = this.nextElementSibling;
     if (!ans) return;
-    ans.style.display = ans.style.display === 'block' ? '' : 'block';
+    if (ans.style.display === 'block') {
+      ans.style.display = '';
+    } else {
+      ans.style.display = 'block';
+    }
     ans.style.transition = 'all 0.3s cubic-bezier(.77,0,.175,1)';
   });
 });

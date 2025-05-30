@@ -13,10 +13,7 @@
 
   <main class="main hidden" id="main">
     <div class="center-container">
-      <div class="logo-wrapper">
-        <img src="logo.png" alt="Orbital Logo" class="logo-img" />
-        <div class="logo-text">ORBITAL</div>
-      </div>
+      <div class="orbital-text" id="orbitalText">ORBITAL</div>
       <div class="buttons">
         <button class="btn">Install</button>
         <button class="btn">Discord</button>
@@ -27,40 +24,16 @@
     <section class="info-section" id="info">
       <h2>How to Use</h2>
       <p>
-        Orbital is a cutting-edge Roblox executor designed for performance and ease of use.
-        <br /><br />
-        <strong>Step 1:</strong> Download via the Install button.<br />
-        <strong>Step 2:</strong> Launch the installer and follow steps.<br />
-        <strong>Step 3:</strong> Open Roblox and attach Orbital.<br />
-        <strong>Step 4:</strong> Inject your script and enjoy advanced execution.<br /><br />
-        Join our Discord for updates and community scripts.
+        Orbital is a high-performance Roblox executor designed for stability and ease of use.<br /><br />
+        <strong>1.</strong> Click Install to get started.<br />
+        <strong>2.</strong> Run the installer and follow setup.<br />
+        <strong>3.</strong> Launch Roblox and attach Orbital.<br />
+        <strong>4.</strong> Inject your scripts and enjoy seamless execution.<br /><br />
+        Need help? Join our Discord.
       </p>
     </section>
   </main>
 
-  <script>
-    // Intro to main transition
-    window.onload = () => {
-      setTimeout(() => {
-        document.getElementById('intro').classList.add('fade-out');
-        setTimeout(() => {
-          document.getElementById('intro').style.display = 'none';
-          const main = document.getElementById('main');
-          main.classList.remove('hidden');
-          main.classList.add('fade-in');
-        }, 1000);
-      }, 2000);
-    };
-
-    // Scroll reveal for info section
-    window.addEventListener('scroll', () => {
-      const info = document.getElementById('info');
-      const rect = info.getBoundingClientRect();
-      const screenPosition = window.innerHeight / 1.2;
-      if (rect.top < screenPosition) {
-        info.classList.add('reveal');
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

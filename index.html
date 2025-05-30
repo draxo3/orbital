@@ -58,7 +58,7 @@
         <div class="buttons">
           <button class="btn glow-btn" id="installBtn">Install</button>
           <button class="btn glow-btn" onclick="window.open('https://discord.gg/cb8NUfukZM', '_blank')">Discord</button>
-          <button class="btn glow-btn" onclick="window.location.href='mailto:support@orbital.com'">Contact</button>
+          <button class="btn glow-btn" id="contactBtn">Contact</button>
         </div>
         <div class="img-3d-container">
           <img src="Orbital.png" alt="Orbital Example" class="orbital-img" id="orbitalImg"/>
@@ -88,6 +88,14 @@
           <button class="btn tos-decline" id="tosDecline"><span>X</span> Decline</button>
           <button class="btn tos-accept" id="tosAccept"><span>&#10003;</span> Accept</button>
         </div>
+      </div>
+    </div>
+    <!-- Unreleased modal/panel -->
+    <div id="unreleasedPanel" class="unreleased-panel hidden">
+      <div class="unreleased-content">
+        <h2>Celestia is currently unreleased</h2>
+        <p>Please join our Discord for updates!</p>
+        <button class="btn" id="closeUnreleased">Close</button>
       </div>
     </div>
   </div>

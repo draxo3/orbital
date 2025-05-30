@@ -57,9 +57,9 @@ window.addEventListener('DOMContentLoaded', () => {
   if (isMobileDevice()) {
     document.getElementById('bvVerifyingText').innerText = "Sorry but Mobile is not supported Orbital Supports Pc,laptop only";
     document.getElementById('bvVerifyingText').style.color = "#ff9100";
-    document.getElementById('bvSubtitle').innerText = "Please switch on a PC";
+    document.getElementById('bvSubtitle').innerText = "Please switch on a PC or Laptop";
     document.getElementById('bvCheckBox').style.opacity = 0.7;
-    document.getElementById('bvDesc').innerText = "Orbital.exe cannot continue on mobile devices. Please use a PC or LapTop.";
+    document.getElementById('bvDesc').innerText = "Orbital.exe cannot continue on mobile devices. Please use a PC or Laptop.";
     return;
   }
 

@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Intro Splash -->
+  <!-- Dual Intro Splash -->
   <div class="intro" id="intro">
-    <h1>THE FUTURE OF EXECUTORS</h1>
+    <h1 id="introText1" class="intro-text show">THE FUTURE OF EXECUTORS</h1>
+    <h1 id="introText2" class="intro-text">ORBITAL.EXE</h1>
   </div>
 
   <!-- Main Content -->
@@ -25,99 +26,102 @@
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="panel features-panel" id="featuresPanel">
-      <div class="panel-header">
-        <h2><span class="blue-accent">Why Orbital?</span></h2>
-      </div>
-      <div class="panel-content">
-        <ul class="feature-list">
-          <li><span>⚡</span> Ultra-fast script execution with robust sandboxing.</li>
-          <li><span>💻</span> Easy-to-use interface for both beginners and pros.</li>
-          <li><span>🛡️</span> Security-first design with automated updates.</li>
-          <li><span>🌐</span> Global community & responsive support.</li>
-          <li><span>🚀</span> Regularly updated for the latest Roblox patches.</li>
-        </ul>
-      </div>
-    </section>
+    <!-- Panels Grid (2 columns, panels appear only when scrolled into view) -->
+    <div class="panels-grid">
+      <!-- Panel 1: Features -->
+      <section class="panel features-panel" id="featuresPanel">
+        <div class="panel-header">
+          <h2><span class="blue-accent">Why Orbital?</span></h2>
+        </div>
+        <div class="panel-content">
+          <ul class="feature-list">
+            <li><span>⚡</span> Ultra-fast script execution with robust sandboxing.</li>
+            <li><span>💻</span> Easy-to-use interface for both beginners and pros.</li>
+            <li><span>🛡️</span> Security-first design with automated updates.</li>
+            <li><span>🌐</span> Global community & responsive support.</li>
+            <li><span>🚀</span> Regularly updated for the latest Roblox patches.</li>
+          </ul>
+        </div>
+      </section>
 
-    <!-- How to Use Section (hidden until scrolled into view) -->
-    <section class="panel info-section" id="infoPanel">
-      <div class="panel-header">
-        <h2><span class="blue-accent">How to Use Orbital</span></h2>
-      </div>
-      <div class="panel-content">
-        <ol class="how-to-list">
-          <li>
-            <strong>Download:</strong> Click <span class="blue-accent">Install</span> above and run the installer.
-          </li>
-          <li>
-            <strong>Setup:</strong> Follow the quick setup instructions within the installer.
-          </li>
-          <li>
-            <strong>Run:</strong> Open Roblox, launch Orbital, and attach it to your game session.
-          </li>
-          <li>
-            <strong>Inject Scripts:</strong> Use the UI to load or paste your scripts and execute them.
-          </li>
-          <li>
-            <strong>Support:</strong> For help, join our <a href="https://discord.gg/yourserver" target="_blank" class="blue-link">Discord</a>.
-          </li>
-        </ol>
-      </div>
-    </section>
+      <!-- Panel 2: How to Use -->
+      <section class="panel info-section" id="infoPanel">
+        <div class="panel-header">
+          <h2><span class="blue-accent">How to Use Orbital</span></h2>
+        </div>
+        <div class="panel-content">
+          <ol class="how-to-list">
+            <li>
+              <strong>Download:</strong> Click <span class="blue-accent">Install</span> above and run the installer.
+            </li>
+            <li>
+              <strong>Setup:</strong> Follow the quick setup instructions within the installer.
+            </li>
+            <li>
+              <strong>Run:</strong> Open Roblox, launch Orbital, and attach it to your game session.
+            </li>
+            <li>
+              <strong>Inject Scripts:</strong> Use the UI to load or paste your scripts and execute them.
+            </li>
+            <li>
+              <strong>Support:</strong> For help, join our <a href="https://discord.gg/yourserver" target="_blank" class="blue-link">Discord</a>.
+            </li>
+          </ol>
+        </div>
+      </section>
 
-    <!-- Pro Features Section -->
-    <section class="panel advanced-panel" id="advancedPanel">
-      <div class="panel-header">
-        <h2 class="blue-accent">Professional Tools</h2>
-      </div>
-      <div class="panel-content">
-        <div class="advanced-grid">
-          <div class="advanced-item">
-            <h3>Script Hub</h3>
-            <p>Access a curated library of popular scripts, or add your own for quick use.</p>
-          </div>
-          <div class="advanced-item">
-            <h3>Session Manager</h3>
-            <p>Track running sessions, manage multiple Roblox clients, and view logs in real time.</p>
-          </div>
-          <div class="advanced-item">
-            <h3>Customizable UI</h3>
-            <p>Change themes, adjust panel layouts, and save presets to fit your workflow.</p>
-          </div>
-          <div class="advanced-item">
-            <h3>Secure Loader</h3>
-            <p>Orbital uses encrypted updates and anti-tamper mechanisms for your safety.</p>
+      <!-- Panel 3: Advanced/Pro Features -->
+      <section class="panel advanced-panel" id="advancedPanel">
+        <div class="panel-header">
+          <h2 class="blue-accent">Professional Tools</h2>
+        </div>
+        <div class="panel-content">
+          <div class="advanced-grid">
+            <div class="advanced-item">
+              <h3>Script Hub</h3>
+              <p>Access a curated library of popular scripts, or add your own for quick use.</p>
+            </div>
+            <div class="advanced-item">
+              <h3>Session Manager</h3>
+              <p>Track running sessions, manage multiple Roblox clients, and view logs in real time.</p>
+            </div>
+            <div class="advanced-item">
+              <h3>Customizable UI</h3>
+              <p>Change themes, adjust panel layouts, and save presets to fit your workflow.</p>
+            </div>
+            <div class="advanced-item">
+              <h3>Secure Loader</h3>
+              <p>Orbital uses encrypted updates and anti-tamper mechanisms for your safety.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- FAQ Section -->
-    <section class="panel faq-panel" id="faqPanel">
-      <div class="panel-header">
-        <h2 class="blue-accent">Frequently Asked Questions</h2>
-      </div>
-      <div class="panel-content">
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-question">Is Orbital safe?</div>
-            <div class="faq-answer">Orbital is designed with safety in mind, using advanced anti-ban and anti-tamper measures. Always download from our official site.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Does Orbital get updated?</div>
-            <div class="faq-answer">Yes, Orbital receives regular updates to ensure compatibility with Roblox changes and add new features.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Can I get support?</div>
-            <div class="faq-answer">Absolutely! Join our Discord for fast help and to connect with other users.</div>
+      <!-- Panel 4: FAQ -->
+      <section class="panel faq-panel" id="faqPanel">
+        <div class="panel-header">
+          <h2 class="blue-accent">Frequently Asked Questions</h2>
+        </div>
+        <div class="panel-content">
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-question">Is Orbital safe?</div>
+              <div class="faq-answer">Orbital is designed with safety in mind, using advanced anti-ban and anti-tamper measures. Always download from our official site.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">Does Orbital get updated?</div>
+              <div class="faq-answer">Yes, Orbital receives regular updates to ensure compatibility with Roblox changes and add new features.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">Can I get support?</div>
+              <div class="faq-answer">Absolutely! Join our Discord for fast help and to connect with other users.</div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- Community Section -->
+    <!-- Community Panel - always at bottom, full width -->
     <section class="panel community-panel" id="communityPanel">
       <div class="panel-header">
         <h2 class="blue-accent">Join the Community</h2>
@@ -148,6 +152,9 @@
         <hr class="tos-divider" />
       </div>
       <ul class="tos-list">
+        <li>You must be 13 years or older to access this software.</li>
+        <li>Orbital is provided "as is" with no warranties or guarantees.</li>
+        <li>Do not use for unlawful activities or bypassing game policies.</li>
         <li>We are not liable for account restrictions or losses.</li>
         <li>Reverse engineering or redistribution is prohibited.</li>
         <li>Access may be revoked at any time at our discretion.</li>

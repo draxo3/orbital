@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -5,88 +6,64 @@
 }
 
 body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: rgb(20, 20, 20);
   color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(transparent, transparent),
-    linear-gradient(#333 1px, transparent 1px),
-    linear-gradient(90deg, #333 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.05;
-  z-index: 0;
-}
-
-.intro {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-  font-weight: bold;
-  animation: fadeIn 2s ease forwards;
-  background-color: rgb(20, 20, 20);
-  position: relative;
-  z-index: 10;
-}
-
-.main {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-.main.fade-in {
-  opacity: 1;
-}
-
-.hidden {
-  display: none;
-}
-
-.fade-out {
-  animation: fadeOut 1s forwards;
-}
-
-.center-container {
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   text-align: center;
-  padding: 2rem;
+  padding: 20px;
 }
 
-.orbital-text {
+/* Intro Text Animation */
+#intro {
+  font-size: 2.5rem;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: introFadeIn 1.5s forwards;
+  color: white;
+  margin-bottom: 50px;
+}
+
+@keyframes introFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main Content */
+#main {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+#main.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logo-text {
   font-size: 3rem;
   font-weight: 900;
-  color: #f57f41;
-  margin-bottom: 2rem;
-  letter-spacing: 2px;
-  position: relative;
-  cursor: default;
-  transition: transform 0.4s ease;
+  color: #f1884c;
+  margin-bottom: 40px;
 }
 
-.orbital-text:hover {
-  transform: translateX(10px);
-}
-
-.buttons {
+/* Buttons */
+.button-group {
   display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  margin-top: 1rem;
+  gap: 20px;
+  margin-bottom: 80px;
 }
 
 .btn {
@@ -98,53 +75,40 @@ body::before {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.2s ease;
 }
 
 .btn:hover {
-  border-color: #f57f41;
-  box-shadow: 0 0 10px #f57f41;
+  border-color: #f1884c;
+  box-shadow: 0 0 10px #f1884c;
 }
 
-.info-section {
-  padding: 4rem 2rem;
-  background-color: rgb(20, 20, 20);
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-  line-height: 1.6;
+.btn:active {
+  background-color: dimgrey;
+}
+
+/* Scroll Section */
+.scroll-section {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 20px;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(20px);
   transition: opacity 1s ease, transform 1s ease;
 }
 
-.info-section.reveal {
+.scroll-section.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.info-section h2 {
-  font-size: 2rem;
-  color: #f57f41;
-  margin-bottom: 1rem;
+h2 {
+  color: #f1884c;
+  margin-bottom: 10px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ccc;
 }

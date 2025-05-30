@@ -1,67 +1,3 @@
-// --- Animated Floating Boxes Background ---
-const canvas = document.getElementById('floatingBoxesBg');
-const ctx = canvas.getContext('2d');
-let boxes = [];
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-function randomColor() {
-  // Slightly orange/grey boxes, subtle
-  const palette = [
-    'rgba(255,145,0,0.08)', 'rgba(255,145,0,0.16)', 'rgba(255,180,80,0.10)',
-    'rgba(200,200,200,0.07)', 'rgba(120,120,120,0.12)'
-  ];
-  return palette[Math.floor(Math.random() * palette.length)];
-}
-
-function createBoxes(amount) {
-  boxes = [];
-  for (let i = 0; i < amount; i++) {
-    boxes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: 24 + Math.random() * 36,
-      color: randomColor(),
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-      angle: Math.random() * Math.PI * 2,
-      spin: (Math.random() - 0.5) * 0.008
-    });
-  }
-}
-function animateBoxes() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let box of boxes) {
-    box.x += box.vx;
-    box.y += box.vy;
-    box.angle += box.spin;
-    // wrap around
-    if (box.x < -box.size) box.x = canvas.width + box.size;
-    if (box.x > canvas.width + box.size) box.x = -box.size;
-    if (box.y < -box.size) box.y = canvas.height + box.size;
-    if (box.y > canvas.height + box.size) box.y = -box.size;
-    ctx.save();
-    ctx.translate(box.x, box.y);
-    ctx.rotate(box.angle);
-    ctx.fillStyle = box.color;
-    ctx.fillRect(-box.size / 2, -box.size / 2, box.size, box.size);
-    ctx.restore();
-  }
-  requestAnimationFrame(animateBoxes);
-}
-function startBoxes() {
-  const base = Math.max(18, Math.floor((window.innerWidth * window.innerHeight) / 28000));
-  createBoxes(base);
-}
-startBoxes();
-animateBoxes();
-window.addEventListener('resize', startBoxes);
-
 // --- Intro animation and main section reveal ---
 document.addEventListener('DOMContentLoaded', () => {
   const intro = document.getElementById('intro');
@@ -194,4 +130,30 @@ document.querySelectorAll('.btn.glow-btn').forEach(btn => {
     this.style.boxShadow = '';
     this.style.borderColor = '';
   });
+});
+
+// SCROLL hint logic
+let scrollHint = document.getElementById('scrollHint');
+let scrollHintShown = false;
+let userHasScrolled = false;
+
+function showScrollHint() {
+  if (!userHasScrolled && !scrollHintShown) {
+    scrollHint.style.opacity = "1";
+    scrollHintShown = true;
+  }
+}
+function hideScrollHint() {
+  if (scrollHintShown) {
+    scrollHint.style.opacity = "0";
+    scrollHintShown = false;
+  }
+}
+setTimeout(() => {
+  if (!userHasScrolled) showScrollHint();
+}, 3000);
+
+window.addEventListener('scroll', () => {
+  userHasScrolled = true;
+  hideScrollHint();
 });
